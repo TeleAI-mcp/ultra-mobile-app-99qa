@@ -1,0 +1,33 @@
+name: Issue Label Comment Bot
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  comment-on-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on enhancement label
+        if: github.event.label.name == 'enhancement'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for the enhancement suggestion! We appreciate your input.'
+            })
+
+      - name: Comment on wontfix label
+        if: github.event.label.name == 'wontfix'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'After review, we have decided not to address this issue at this time.'
+            })
