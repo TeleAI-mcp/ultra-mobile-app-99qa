@@ -1,2 +1,3 @@
-# ultra-mobile-app-99qa
-Automated issue comment bot repository
+# Ultra Mobile App 99Qa
+
+Automated issue comment bot repository.
